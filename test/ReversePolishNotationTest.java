@@ -24,6 +24,10 @@ class ReversePolishNotationTest {
     public void testThatTheReversePolishNotationOfThisInputReturnMinus1(){
         String [] input = {"4", "-3", "-", "8", "-"};
         assertEquals(-1, ReversePolishNotation.evalRPM(input));
+    }@Test
+    public void testThatTheReversePolishNotationOfThisInputReturn6(){
+        String [] input =  {"4","13","5","/","+"};
+        assertEquals(6, ReversePolishNotation.evalRPM(input));
     }
 
 }
