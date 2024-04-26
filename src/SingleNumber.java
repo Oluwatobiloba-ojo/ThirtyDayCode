@@ -14,7 +14,7 @@ public class SingleNumber {
         for (int value: nums) {
             if (value == x) count++;
         }
-        if (count > 2) return false;
+        if (count >= 2) return false;
         else return true;
     }
 }
