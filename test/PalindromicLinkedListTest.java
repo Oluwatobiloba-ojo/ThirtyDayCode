@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PalindromicLinkedListTest {
 
@@ -28,7 +27,14 @@ public class PalindromicLinkedListTest {
     @Test
     public void testThatPalindromicLinkedListReturnTrueFor16661Value(){
         ListNode listNode = new ListNode(1, new ListNode(6, new ListNode(6, new ListNode(6, new ListNode(1)))));
+        System.out.println(listNode);
         assertTrue(PalindromicLinkedList.isPalindromic(listNode));
+    }
+    @Test
+    public void testDeserializeStringToAList(){
+        String word = "[1,2,3,4,5]";
+        ListNode node = ListNode.deserialize(word);
+        assertNotNull(node);
     }
 
 
