@@ -1,16 +1,27 @@
 public class MaximumSumOfSubArray {
 
 
-    public static int maximumSubarraySum(int[] nums, int k) {
-        int sum = nums[0] + nums[1] + nums[2];
-        int currentSum;
+    public static long maximumSubarraySum(int[] nums, int k) {
+        if (nums.length <= k & !checkIndex(nums, 0, k)) return 0;
+        long sum = sum_up(nums, 0, k);
+        if(nums.length == k) return sum;
+        long currentSum = sum;
+        if (!checkIndex(nums, 0, k)) sum = 0;
         for (int i = 0; i < nums.length-k; i++) {
-            if(checkIndex(nums, i+1, k)) {
-                currentSum = sum - nums[i] + nums[i+k];
+            currentSum = currentSum - nums[i] + nums[i + k];
+            if(checkIndex(nums, i+1, k)){
                 if (currentSum > sum) sum = currentSum;
             }
         }
         return sum;
+    }
+
+    private static long sum_up(int[] nums, int i, int k) {
+        long result = 0;
+        for (int index = i; index < i+k; index++) {
+            result += nums[index];
+        }
+        return result;
     }
 
     private static boolean checkIndex(int[] nums, int i, int k) {
