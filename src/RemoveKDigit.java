@@ -1,29 +1,29 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class RemoveKDigit {
-    public static String removeKDigits(String nums, int k) {
-        if (k >= nums.length()) return "0";
-        List<Integer> num = new ArrayList<>();
-        for (int count = 0; count <= nums.length()-k; count++) {
-            num.add(getDigit(count, k, nums));
-        }
-        return minimumValue(num);
-    }
 
-    private static String minimumValue(List<Integer> num) {
-        return String.valueOf(num.stream().sorted().findFirst().orElse(0));
-    }
-
-    private static Integer getDigit(int count, int k, String nums) {
+    public static String removeKDigits2(String value, int k) {
         StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < nums.length(); index++){
-            if (index == count){
-                index += k-1;
-                continue;
+        for (int count = 0; count < value.length(); count++){
+            if (!builder.isEmpty()) {
+                int digit = Integer.parseInt("" +(builder.charAt(builder.length()-1)));
+                while (digit > Integer.parseInt(value.charAt(count)+"") && k > 0 && !builder.isEmpty()) {
+                    k = deleteChar(k, builder);
+                    if (!builder.isEmpty())digit = Integer.parseInt(""+builder.charAt(builder.length()-1));
+                }
             }
-            builder.append(nums.charAt(index));
+            builder.append(value.charAt(count));
         }
-       return Integer.parseInt(builder.toString());
+        while (k > 0){
+            k = deleteChar(k, builder);
+        }
+        if (builder.isEmpty()) return "0";
+        while (builder.length() > 1 && builder.charAt(0) == '0'){
+            builder.deleteCharAt(0);
+        }
+       return builder.toString();
+    }
+
+    private static int deleteChar(int k, StringBuilder builder) {
+        builder.deleteCharAt(builder.length() - 1);
+        return k-1;
     }
 }
