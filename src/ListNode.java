@@ -1,8 +1,14 @@
-import java.util.Arrays;
-import java.util.List;
-
 public class ListNode {
     private int value;
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setNext(ListNode next) {
+        this.next = next;
+    }
+
     private ListNode next;
     public ListNode(){}
 
